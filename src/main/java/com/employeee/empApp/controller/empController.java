@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -25,8 +26,8 @@ public class empController {
     }
 
     @GetMapping("/employees/{employeeId}")
-    public emp findAll(@PathVariable int employeeId) {
-        emp theEmp = employeeService.findById(employeeId);
+    public Optional<emp> findAll(@PathVariable int employeeId) {
+        Optional<emp> theEmp = employeeService.findById(employeeId);
         if(theEmp == null) {
             throw new RuntimeException("emp Id not found -"+ employeeId);
         }
